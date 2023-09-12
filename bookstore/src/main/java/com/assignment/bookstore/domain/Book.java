@@ -1,22 +1,39 @@
 package com.assignment.bookstore.domain;
 
-public class Book {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Book {
+	@Id // used for creating id column of the table
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	// generates automatically a unique primary key for every new entity object
+	private Long id;
 	private String title;
 	private String author;
-	private int publicationYear;
-	private int isbn;
+	private Long publicationYear;
+	private String isbn;
 	private double price;
 
 	public Book() {
 	}
 
-	public Book(String title, String author, int publicatioYear, int isbn, double price) {
+	public Book(String title, String author, long publicatioYear, String isbn, double price) {
 		this.title = title;
 		this.author = author;
 		this.publicationYear = publicatioYear;
 		this.isbn = isbn;
 		this.price = price;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -35,19 +52,19 @@ public class Book {
 		this.author = author;
 	}
 
-	public int getPublicationYear() {
+	public long getPublicationYear() {
 		return publicationYear;
 	}
 
-	public void setPublicationYear(int publicationYear) {
+	public void setPublicationYear(Long publicationYear) {
 		this.publicationYear = publicationYear;
 	}
 
-	public int getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 
@@ -57,6 +74,12 @@ public class Book {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Book id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
+				+ ", isbn=" + isbn;
 	}
 
 }
