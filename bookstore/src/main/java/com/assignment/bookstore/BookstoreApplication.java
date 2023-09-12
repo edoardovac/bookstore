@@ -29,7 +29,7 @@ public class BookstoreApplication {
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}
-			log.info("haetaan kaikki Naamiot");
+			log.info("fetch all books by ernest hemingway");
 			for (Book book : repository.findByAuthor("Ernest Hemingway")) {
 				log.info(book.toString());
 			}
