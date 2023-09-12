@@ -20,15 +20,15 @@ public class Book {
 	public Book() {
 	}
 
-	public Book(String title, String author, long publicatioYear, String isbn, double price) {
+	public Book(String title, String author, long publicationYear, String isbn, double price) {
 		this.title = title;
 		this.author = author;
-		this.publicationYear = publicatioYear;
+		this.publicationYear = publicationYear;
 		this.isbn = isbn;
 		this.price = price;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -52,7 +52,7 @@ public class Book {
 		this.author = author;
 	}
 
-	public long getPublicationYear() {
+	public Long getPublicationYear() {
 		return publicationYear;
 	}
 
