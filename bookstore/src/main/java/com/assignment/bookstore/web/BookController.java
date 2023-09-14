@@ -34,9 +34,10 @@ public class BookController {
 		return "redirect:/booklist";
 	}
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 		repository.deleteById(bookId);
-		return "redirect:.../booklist";
+		// watch out! it's only two dots after the column
+		return "redirect:../booklist";
 	}
 }
