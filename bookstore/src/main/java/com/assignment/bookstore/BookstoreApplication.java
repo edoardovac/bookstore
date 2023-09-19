@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import com.assignment.bookstore.domain.Book;
 import com.assignment.bookstore.domain.BookRepository;
+import com.assignment.bookstore.domain.Category;
+import com.assignment.bookstore.domain.CategoryRepository;
 
 
 @SpringBootApplication
@@ -20,10 +22,14 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
+	public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository cRepository) {
 		return (args) -> {
-			repository.save(new Book("A Farewell to Arms", "Ernest Hemingway", 1929, "1232323-21", 10.00));
-			repository.save(new Book("Animal Farm", "George Orwell", 1945, "2212343-5", 9.99));
+			log.info("save a couple of book");
+			cRepository.save(new Category("Realism"));
+			cRepository.save(new Category("Political Satire"));
+			
+			repository.save(new Book("A Farewell to Arms", "Ernest Hemingway", 1929, "1232323-21", 10.00, cRepository.findByName("Realism").get(0)));
+			repository.save(new Book("Animal Farm", "George Orwell", 1945, "2212343-5", 9.99, cRepository.findByName("Political Satire").get(0)));
 
 			log.info("fetch all books");
 			for (Book book : repository.findAll()) {

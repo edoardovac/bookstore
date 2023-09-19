@@ -1,9 +1,6 @@
 package com.assignment.bookstore.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -13,19 +10,25 @@ public class Book {
 	private Long id;
 	private String title;
 	private String author;
-	private Long publicationYear;
+	private int publicationYear;
 	private String isbn;
 	private double price;
+
+	// Add new category attribute to the Book entity
+	@ManyToOne
+	@JoinColumn(name = "categoryid")
+	private Category category;
 
 	public Book() {
 	}
 
-	public Book(String title, String author, long publicationYear, String isbn, double price) {
+	public Book(String title, String author, int publicationYear, String isbn, double price, Category category) {
 		this.title = title;
 		this.author = author;
 		this.publicationYear = publicationYear;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -52,11 +55,11 @@ public class Book {
 		this.author = author;
 	}
 
-	public Long getPublicationYear() {
+	public int getPublicationYear() {
 		return publicationYear;
 	}
 
-	public void setPublicationYear(Long publicationYear) {
+	public void setPublicationYear(int publicationYear) {
 		this.publicationYear = publicationYear;
 	}
 
@@ -74,6 +77,14 @@ public class Book {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	@Override
