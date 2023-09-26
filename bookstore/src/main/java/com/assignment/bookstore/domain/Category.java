@@ -2,6 +2,8 @@ package com.assignment.bookstore.domain;
 
 import java.util.List;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Category {
@@ -12,6 +14,8 @@ public class Category {
 	private String name;
 
 	// Add annotations for one-to-many relationship
+	// JsonIgnore to avoid endless loop (REST related)
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	private List<Book> books;
 
