@@ -3,6 +3,7 @@ package com.assignment.bookstore.web;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,16 +21,22 @@ public class BookController {
 	@Autowired
 	private CategoryRepository crepository;
 
+	// Login page
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
+
 	// Show all books
 	@RequestMapping("/booklist")
 	public String bookList(Model model) {
 		model.addAttribute("books", repository.findAll());
 		return "booklist";
-
 	}
 
 	// Add new book
 	@RequestMapping(value = "/add")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
 		model.addAttribute("categories", crepository.findAll());
@@ -45,6 +52,7 @@ public class BookController {
 
 	// Delete book
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 		repository.deleteById(bookId);
 		// watch out! it's only two dots after the column

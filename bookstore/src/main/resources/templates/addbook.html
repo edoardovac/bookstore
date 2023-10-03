@@ -1,11 +1,23 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <title>Booklist</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h1>Add book</h1>
+	<div class="col-md-4">
+		<span sec:authentication="name">Name</span>
+
+	</div>
+	<div class="col-md-4" style="padding: 20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
 	<div>
 		<form th:object="${book}" th:action="@{save}" action="#" method="post">
 			<label for="author">Author</label> <input type="text" id="author"
@@ -27,7 +39,7 @@
 				<!-- for loop so that each department is shown -->
 				<option th:each="category: ${categories}"
 					th:value="${category.categoryId}" th:text="${category.name}"></option>
-			</select> <input type="submit" value="Save"></input>
+			</select> <input type="submit" value="Save" class="btn btn-success"></input>
 		</form>
 	</div>
 </body>
