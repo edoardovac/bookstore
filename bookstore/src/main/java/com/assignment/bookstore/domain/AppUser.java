@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "UserTable")
+@Table(name = "user_table")
 public class AppUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,8 @@ public class AppUser {
 	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 
-	@Column(name = "password", nullable = false)
-	private String passwordHash;
+	@Column(name = "password_hash", nullable = false)
+	private String password_hash;
 
 	@Column(name = "role", nullable = false)
 	private String role;
@@ -28,10 +28,10 @@ public class AppUser {
 	public AppUser() {
 	}
 
-	public AppUser(String username, String passwordHash, String role) {
+	public AppUser(String username, String password_hash, String role) {
 		super();
 		this.username = username;
-		this.passwordHash = passwordHash;
+		this.password_hash = password_hash;
 		this.role = role;
 	}
 
@@ -52,11 +52,11 @@ public class AppUser {
 	}
 
 	public String getPasswordHash() {
-		return passwordHash;
+		return this.password_hash;
 	}
 
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+	public void setPasswordHash(String password_hash) {
+		this.password_hash = password_hash;
 	}
 
 	public String getRole() {

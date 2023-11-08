@@ -6,11 +6,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
+@Table(name = "Category")
 public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long categoryId;
+	@Column(name = "name", nullable = false)
 	private String name;
 
 	// Add annotations for one-to-many relationship

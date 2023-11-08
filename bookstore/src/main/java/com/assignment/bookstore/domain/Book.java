@@ -3,6 +3,7 @@ package com.assignment.bookstore.domain;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Book")
 public class Book {
 	@Id // used for creating id column of the table
 	@GeneratedValue(strategy = GenerationType.AUTO)
